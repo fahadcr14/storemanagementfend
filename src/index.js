@@ -1,8 +1,9 @@
+
+
 import React from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "App";
-import ReactDOM from 'react-dom';
-
 import { AuthContextProvider } from "context";
 import { UserContextProvider } from "context/UserContext";
 
@@ -10,16 +11,16 @@ import { UserContextProvider } from "context/UserContext";
 import { MaterialUIControllerProvider } from "context";
 
 const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
-ReactDOM.render(
+root.render(
   <BrowserRouter>
-    <AuthContextProvider>
-      <UserContextProvider>
-        <MaterialUIControllerProvider>
-          <App />
-        </MaterialUIControllerProvider>
-      </UserContextProvider>
+  <AuthContextProvider>
+    <UserContextProvider>
+      <MaterialUIControllerProvider>
+        <App />
+      </MaterialUIControllerProvider>
+    </UserContextProvider>
     </AuthContextProvider>
-  </BrowserRouter>,
-  rootElement
+  </BrowserRouter>
 );
