@@ -10,17 +10,17 @@ import { UserContextProvider } from "context/UserContext";
 
 // Material Dashboard 2 React Context  Provider
 import { MaterialUIControllerProvider } from "context";
-
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
   <BrowserRouter>
-  <AuthContextProvider>
-    <UserContextProvider>
-      <MaterialUIControllerProvider>
-        <App />
-      </MaterialUIControllerProvider>
-    </UserContextProvider>
+    <AuthContextProvider>
+      <UserContextProvider>
+        <MaterialUIControllerProvider>
+          <App />
+        </MaterialUIControllerProvider>
+      </UserContextProvider>
     </AuthContextProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
+  rootElement
 );
