@@ -1,9 +1,10 @@
 
 
 import React from "react";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "App";
+import ReactDOM from 'react-dom';
+
 import { AuthContextProvider } from "context";
 import { UserContextProvider } from "context/UserContext";
 
@@ -13,7 +14,7 @@ import { MaterialUIControllerProvider } from "context";
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
-root.render(
+ReactDOM.render(
   <BrowserRouter>
   <AuthContextProvider>
     <UserContextProvider>
