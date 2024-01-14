@@ -12,7 +12,6 @@ import { UserContextProvider } from "context/UserContext";
 import { MaterialUIControllerProvider } from "context";
 
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
 
 ReactDOM.render(
   <BrowserRouter>
