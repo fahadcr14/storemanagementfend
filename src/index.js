@@ -1,26 +1,22 @@
-
-
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import App from "App";
-import { AuthContextProvider } from "context";
-import { UserContextProvider } from "context/UserContext";
-
-// Material Dashboard 2 React Context  Provider
-import { MaterialUIControllerProvider } from "context";
+import App from "./App"; // Update the import path if necessary
+import { AuthContextProvider } from "./context";
+import { UserContextProvider } from "./context/UserContext";
+import { MaterialUIControllerProvider } from "./context";
 
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
 
-root.render(
+ReactDOM.render(
   <BrowserRouter>
-  <AuthContextProvider>
-    <UserContextProvider>
-      <MaterialUIControllerProvider>
-        <App />
-      </MaterialUIControllerProvider>
-    </UserContextProvider>
+    <AuthContextProvider>
+      <UserContextProvider>
+        <MaterialUIControllerProvider>
+          <App />
+        </MaterialUIControllerProvider>
+      </UserContextProvider>
     </AuthContextProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
+  rootElement
 );
