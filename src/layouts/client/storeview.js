@@ -11,7 +11,8 @@ import EmployeesIcon from '@mui/icons-material/Group';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Avatar, Box, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles ';
+//import { makeStyles } from '@mui/styles ';
+import styled from '@emotion/styled';
 
 const images = Array.from({ length: 5 }, (_, index) => `https://picsum.photos/800/400?random=${index}`);
 const storeDetails = {
@@ -22,7 +23,7 @@ const storeDetails = {
   area: 50,
   empolyees: 8,
 };
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
     storeIcon: {
         padding: '0.75rem', // Adjust the padding as needed
         minWidth: 'auto',

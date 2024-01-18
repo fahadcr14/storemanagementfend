@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Container, Grid, Card, CardContent, Typography, InputBase, Avatar, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { makeStyles } from '@mui/styles ';
+//import { makeStyles } from '@mui/styles ';
+import styled from '@emotion/styled';
+
 import { useMaterialUIController } from 'context';
 import { setLayout } from 'context';
 
@@ -12,7 +14,7 @@ import StoreViewPage from './storeview';
 import { setConditionalSearch } from 'context';
 import { ArrowBackIos } from '@mui/icons-material';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
   appBar: {
     position:'relative',
     background: '#fff', // Set your desired background color

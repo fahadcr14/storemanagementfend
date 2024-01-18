@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent, Typography, InputBase, Avatar, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { makeStyles } from '@mui/styles ';
+//import { makeStyles } from '@mui/styles ';
+import styled from '@emotion/styled';
 
 import StorefrontIcon from '@mui/icons-material/Storefront'; // Import Storefront icon
 import MeasureIcon from '@mui/icons-material/AspectRatio'; // Import Measure icon
@@ -14,7 +15,7 @@ import Button from '@mui/material/Button';
 import { useMaterialUIController } from 'context';
 import { setConditionalSearch } from 'context';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
   
   card: {
     marginBottom: theme.spacing(2),
