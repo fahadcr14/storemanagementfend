@@ -25,7 +25,7 @@ export default function data() {
   const fetchProjects = async () => {
     try {
       // Make an API call to fetch notifications
-      const response = await axios.get(API_URL+'/api/projects/', {
+      const response = await axios.get(API_URL +'/api/projects/', {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
