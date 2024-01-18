@@ -11,7 +11,7 @@ import EmployeesIcon from '@mui/icons-material/Group';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Avatar, Box, Button } from '@mui/material';
-import { makeStyles } from '@mui/system ';
+import { makeStyles } from '@mui/styles ';
 
 const images = Array.from({ length: 5 }, (_, index) => `https://picsum.photos/800/400?random=${index}`);
 const storeDetails = {

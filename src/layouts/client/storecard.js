@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, InputBase, Avatar, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { makeStyles } from '@mui/system ';
+import { makeStyles } from '@mui/styles ';
 
 import StorefrontIcon from '@mui/icons-material/Storefront'; // Import Storefront icon
 import MeasureIcon from '@mui/icons-material/AspectRatio'; // Import Measure icon
