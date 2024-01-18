@@ -17,13 +17,15 @@ import axios from 'axios';
 import { useState, useEffect, useContext } from "react";
 
 export default function data() {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const [projects, setProjects] = useState([]);
   const token = localStorage.getItem("token");
 
   const fetchProjects = async () => {
     try {
       // Make an API call to fetch notifications
-      const response = await axios.get('http://localhost:8000/api/projects/', {
+      const response = await axios.get(API_URL+'/api/projects/', {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
