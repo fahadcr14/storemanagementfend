@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Container, Grid, Card, CardContent, Typography, InputBase, Avatar, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@mui/system ';
 import { useMaterialUIController } from 'context';
 import { setLayout } from 'context';
 
