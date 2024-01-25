@@ -21,11 +21,11 @@ export default function data() {
 
   const [projects, setProjects] = useState([]);
   const token = localStorage.getItem("token");
-
+  const apiBaseUrl = process.env.REACT_APP_STORE_BASE_URL;
   const fetchProjects = async () => {
     try {
       // Make an API call to fetch notifications
-      const response = await axios.get('http://localhost:8000/api/projects/', {
+      const response = await axios.get(apiBaseUrl+'/api/projects/', {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },

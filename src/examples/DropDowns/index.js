@@ -26,11 +26,11 @@ const Dropdown = ({ onSelectChange }) => {
   const [stores, setStores] = useState([]);
   const [selectedStore, setSelectedStore] = useState('');
   const token = localStorage.getItem("token");
-
+  const apiBaseUrl = process.env.REACT_APP_STORE_BASE_URL;
   const fetchStores = async () => {
     try {
       // Make an API call to fetch notifications
-      const response = await axios.get('http://localhost:8000/api/store/', {
+      const response = await axios.get(apiBaseUrl+'/api/store/', {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
