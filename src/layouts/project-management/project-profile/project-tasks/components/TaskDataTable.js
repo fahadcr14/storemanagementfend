@@ -18,6 +18,7 @@ export default function data() {
   const [tasks, setTasks] = useState([]);
   const token = localStorage.getItem("token");
   const userId=localStorage.getItem("user")
+  const apiBaseUrl = process.env.REACT_APP_STORE_BASE_URL;
   let { project_id } = useParams();
   const fetchTasks = async () => {
     let taskData ={
@@ -25,7 +26,7 @@ export default function data() {
     };
     try {
 
-      const response = await axios.post('http://localhost:8000/tasks/user/', taskData, {
+      const response = await axios.post(apiBaseUrl+'/tasks/user/', taskData, {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
