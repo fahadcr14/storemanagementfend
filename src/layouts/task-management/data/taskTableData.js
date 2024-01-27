@@ -157,7 +157,7 @@ export default function data() {
 
     rows:  tasks.map((task, index) => ({
       task_serial: (
-        <Link to={userGroup === 'ADMIN' ? `/task-mangement/task_profile/${task.task_id}` : `/task-mangement/task_profile/${task.id}`}>
+        <Link to={userGroup === 'ADMIN' ? `/task-mangement/task_profile/${task.id}` : `/task-mangement/task_profile/${task.task_id}`}>
         <Author component="a" name={userGroup === 'ADMIN' ?task.task_serial_no:task.task_serial} />
       </Link>
          
