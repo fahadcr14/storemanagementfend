@@ -45,7 +45,7 @@ const CascadingDropdown = ({onSelectChange}) => {
   const fetchDistrict = async (city) => {
     try {
       // Make an API call to fetch notifications
-      const response = await axios.get(apiBaseUrl+city+'/districts', {
+      const response = await axios.get(apiBaseUrl+"/cities/"+city+'/districts', {
         headers: {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
