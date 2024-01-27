@@ -28,10 +28,11 @@ import { AuthContext } from "context";
 function Basic() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useUserContext();
   const authContext = useContext(AuthContext);
+  const [error, setError] = useState(null);
   const apiBaseUrl = process.env.REACT_APP_STORE_BASE_URL;
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -43,6 +44,8 @@ function Basic() {
 
   const handleSignIn = async () => {
     try {
+      setError('');
+      setLoading(true);
       // Call the login function with username and password
       const payload = {
         username,
@@ -57,6 +60,9 @@ function Basic() {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
+  
+    console.log(response);
+    
 
       // const response = await AuthService.login(formData);
       // Check the response and redirect if successful
@@ -66,19 +72,26 @@ function Basic() {
         localStorage.setItem("user", response.data.userId);
         localStorage.setItem("user_group", response.data.user_group[0]);
         localStorage.setItem("permissions", response.data.user_permissions);
+        localStorage.setItem("token", response.data.token);
         authContext.login(response.data.token);
+        navigate("/dashboard");
+        setError('');
      //   navigate("/dashboard"); // Use React Router history to navigate
       } else {
+         setError('Invalid username or password');
         console.error('Error:', error);
+         console.error('looo',error);
         // Handle login failure, show an error message, etc.
       }
     } catch (res) {
-      // if (res.hasOwnProperty("message")) {
-      //   setCredentialsError(res.message);
-      // } else {
-      //   setCredentialsError(res.errors[0].detail);
-      // }
-  }};
+       setError('Invalid username or password');
+      
+  }
+  finally {
+    // Set loading back to false after the response is received
+    setLoading(false);
+  }
+};
 
  
   const [rememberMe, setRememberMe] = useState(false);
@@ -142,11 +155,16 @@ function Basic() {
                 color="info"
                 fullWidth
                 onClick={handleSignIn}
+                 disabled={loading}
               >
-                sign in
+                {loading ? 'Signing In...' : 'Sign In'}
               </MDButton>
             </MDBox>
-
+{error && (
+  <MDTypography variant="body2" color="error" textAlign="center" mt={2}>
+    {error}
+  </MDTypography>
+)}
           </MDBox>
         </MDBox>
       </Card>
