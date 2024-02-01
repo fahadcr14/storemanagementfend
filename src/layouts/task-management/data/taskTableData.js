@@ -205,7 +205,7 @@ export default function data() {
       </Link>
       
       ) : (
-        <Link to={`/task-submission/view-submission/${task.task_id}`}>
+        <Link to={userGroup === 'ADMIN' ? `/task-submission/view-submission/${task.id}` : `/task-submission/view-submission/${task.task_id}`}>
            <MDTypography component="a" href="#" variant="caption" color="success" fontWeight="medium">
             {/* View Submission */}
             查看提交內容
