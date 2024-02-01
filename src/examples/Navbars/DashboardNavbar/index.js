@@ -100,7 +100,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
           Authorization: `Token ${token}`,  // Replace with your authentication token
         },
       });
-
+      console.log(response);
       // Check the response and update the state with the fetched notifications
       if (response && response.status === 200) {
         setNotifications(response.data.notifications);
