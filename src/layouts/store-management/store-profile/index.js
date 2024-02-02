@@ -234,6 +234,34 @@ function StoreProfile() {
                     </TableRow>
 
                     <TableRow>
+                      <TableCell align="left" variant="head" >
+                        {/* floors */}
+                        樓層
+                      </TableCell>
+                      <TableCell align="left" >
+                        {store.floors}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left" variant="head" >
+                        {/* floors */}
+                        商店區
+                      </TableCell>
+                      <TableCell align="left" >
+                        {store.store_area}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left" variant="head" >
+                        {/* no_of_rooms */}
+                        房間的數量
+                      </TableCell>
+                      <TableCell align="left" >
+                        {store.no_of_rooms}
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
                       <TableCell align="left" variant="head">
                         {/* Sales */}
                         銷售量

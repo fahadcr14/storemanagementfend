@@ -116,7 +116,7 @@ export default function data() {
         ),
         grade: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            {store.brands}
+            {store.grade}
           </MDTypography>
         ),
         channel: (
