@@ -39,8 +39,10 @@ const AddStore = () => {
     grade: "",
     channel: "",
     description: "",
-    address: ""
-
+    address: "",
+    store_area:"",
+    floors:"",
+    no_of_rooms:""
   });
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -58,8 +60,19 @@ const AddStore = () => {
 
   });
   const resetForm = () => {
-
-    setStore(null);
+    setStore({
+    name: "",
+    email: "",
+    owner_name: "",
+    installation_time: "",
+    grade: "",
+    channel: "",
+    description: "",
+    address: "",
+    store_area:"",
+    floors:"",
+    no_of_rooms:""
+    })
     setContacts(null);
     setErrors({
       titleError: false,
@@ -81,7 +94,7 @@ const AddStore = () => {
   // };
 
   const [contacts, setContacts] = useState([
-    { name: '', email: '', phone: '' },
+ 
   ]);
 
   const handleAddContact = () => {
@@ -116,27 +129,37 @@ const AddStore = () => {
   }, [notification]);
 
   const changeHandler = (e) => {
+    
     setStore({
       ...store,
       [e.target.name]: e.target.value,
     });
+    setErrors({ ...errors,  nameError: false,
+      emailError: false,
+      ownerError: false, });
+   
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     // validation
-    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const mailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (store.name.trim().length === 0) {
       setErrors({ ...errors, nameError: true });
       return;
     }
+    
+    if (store.email.trim().length > 0 && !store.email.trim().match(mailFormat)) {
+      setErrors({ ...errors, emailError: true });
+      return;
+    }
 
-    // if (store.email.trim().length === 0 || !store.email.trim().match(mailFormat)) {
-    //   setErrors({ ...errors, emailError: true });
-    //   return;
-    // }
+    if (store.owner_name.trim().length === 0) {
+      setErrors({ ...errors, ownerError: true });
+      return;
+    }
 
 
 
@@ -149,10 +172,13 @@ const AddStore = () => {
       sales: store.sales,
       contacts: contacts,
       address: store.address,
-      description: store.description
+      description: store.description,
+      store_area:store.store_area,
+      floors:store.floors
+      
 
     }
-
+try{
     console.log(storeData);
     const response = await axios.post(apiBaseUrl + '/api/store/', storeData, {
       headers: {
@@ -163,23 +189,29 @@ const AddStore = () => {
 
     console.log('Store submitted successfully:', response.data);
 
-    if (response && response.status === 200) {
+    if (response && response.status === 201) {
+     console.log("success")
+     
+      setErrorMessage("");
       resetForm();
       setSuccessMessage('Store added successfully');
+      setNotification(true);
+     
       // Reset form values upon successful submission
     } else {
+      
       setErrorMessage('Failed to add store'); // Display error message if response status is not 200
     }
-
+  }
+  catch (error) {
+    setErrorMessage('Unable to add store');
+    // Handle error submitting project
+  }
     // call api for update
     // const response = await AuthService.updateProfile(JSON.stringify(storeData));
 
     // reset errors
-    setErrors({
-      nameError: false,
-      emailError: false,
-      ownerError: false,
-    });
+ 
 
     setNotification(true);
   };
@@ -188,12 +220,19 @@ const AddStore = () => {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header name={store.name}>
-        {notification && (
-          <MDAlert color="info" mt="20px">
+      <Header >
+      {notification && successMessage && (
+          <MDAlert color="success" mt="20px">
             <MDTypography variant="body2" color="white">
-              {/* store has added*/}
-              商店已新增
+              {successMessage}
+            </MDTypography>
+          </MDAlert>
+        )}
+
+{notification && errorMessage && (
+          <MDAlert color="error" mt="20px">
+            <MDTypography variant="body2" color="white">
+              {errorMessage}
             </MDTypography>
           </MDAlert>
         )}
@@ -253,6 +292,54 @@ const AddStore = () => {
                 type="name"
                 name="sales"
                 value={store.sales}
+                onChange={changeHandler}
+
+              />
+
+            </MDBox>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+            <MDTypography variant="body2" color="text" ml={2} fontWeight="regular">
+              {/* Enter Sales */}
+              商店區
+            </MDTypography>
+            <MDBox mb={2} width="50%">
+              <MDInput
+                type="name"
+                name="store_area"
+                value={store.store_area}
+                onChange={changeHandler}
+
+              />
+
+            </MDBox>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+            <MDTypography variant="body2" color="text" ml={2} fontWeight="regular">
+              {/* Enter floor */}
+              樓層
+            </MDTypography>
+            <MDBox mb={2} width="50%">
+              <MDInput
+                type="name"
+                name="floors"
+                value={store.floors}
+                onChange={changeHandler}
+
+              />
+
+            </MDBox>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
+            <MDTypography variant="body2" color="text" ml={2} fontWeight="regular">
+              {/* Enter no of rooms */}
+              房間數
+            </MDTypography>
+            <MDBox mb={2} width="50%">
+              <MDInput
+                type="name"
+                name="no_of_rooms"
+                value={store.no_of_rooms}
                 onChange={changeHandler}
 
               />
@@ -342,7 +429,7 @@ const AddStore = () => {
                 onChange={changeHandler}
                 error={errors.storeError}
               />
-              {errors.nameError && (
+              {errors.ownerError && (
                 <MDTypography variant="caption" color="error" fontWeight="light">
                   {/* The Owner name can not be null */}
                   所有者名稱不能為空
@@ -367,9 +454,7 @@ const AddStore = () => {
               <CalendarTodayIcon style={{ marginLeft: '8px', alignSelf: 'center', color: '#888' }} /> {/* Calendar Icon */}
             </MDBox>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
-            <Dropdown selectedValue="store1" />
-          </div>
+        
 
           <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}>
             <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
