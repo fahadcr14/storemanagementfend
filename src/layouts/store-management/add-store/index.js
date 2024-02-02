@@ -175,7 +175,9 @@ const AddStore = () => {
       description: store.description,
       store_area:store.store_area,
       floors:store.floors,
-      no_of_rooms:store.no_of_rooms
+      no_of_rooms:store.no_of_rooms,
+      grade:store.grade,
+      channel:store.channel,
       
 
     }
