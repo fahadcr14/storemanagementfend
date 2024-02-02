@@ -174,7 +174,8 @@ const AddStore = () => {
       address: store.address,
       description: store.description,
       store_area:store.store_area,
-      floors:store.floors
+      floors:store.floors,
+      no_of_rooms:store.no_of_rooms
       
 
     }
