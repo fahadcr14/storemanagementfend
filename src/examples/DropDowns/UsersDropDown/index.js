@@ -55,8 +55,10 @@ const Dropdown = ({ onSelectChange }) => {
 
     const handleDropdownChange = event => {
         const selectedValue = event.target.value;
+        const selectedUser = users.find(user => user.id === parseInt(selectedValue));
+        console.log(selectedUser)
         setSelectedUsers(selectedValue);
-        onSelectChange(selectedValue); // Pass the selected value to the parent component
+        onSelectChange(selectedValue,selectedUser); // Pass the selected value to the parent component
     };
 
 
